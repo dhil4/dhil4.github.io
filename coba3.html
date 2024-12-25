@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #8B5E3C;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        /* Halaman 1 - Welcome Screen */
+        .welcome {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .welcome h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome button {
+            background-color: #5C4328;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        /* Halaman 2 - Login & Sign Up */
+        .container {
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            flex-direction: column;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .container button {
+            background-color: #5C4328;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Halaman 3 - Menu */
+        .menu {
+            padding: 20px;
+            display: none;
+        }
+
+        .menu h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #5C4328;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .card .price {
+            font-weight: bold;
+        }
+
+        /* Halaman 4 - Detail Produk */
+        .product-detail {
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .product-detail img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .product-detail h2 {
+            margin: 10px 0;
+        }
+
+        .product-detail p {
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .product-detail .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .product-detail button {
+            background-color: #5C4328;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman 1 -->
+    <div class="welcome" id="welcome">
+        <img src="logo.png" alt="Coffee Shop Logo">
+        <h1>Welcome to Coffee Shop</h1>
+        <button onclick="showPage('login')">Log In</button>
+        <button onclick="showPage('signup')">Sign Up</button>
+    </div>
+
+    <!-- Halaman 2: Login -->
+    <div class="container" id="login" style="display: none;">
+        <h2>Log In</h2>
+        <div class="input-group">
+            <input type="text" placeholder="Username" id="login-username">
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="Password" id="login-password">
+        </div>
+        <button onclick="showPage('menu')">Log In</button>
+    </div>
+
+    <!-- Halaman 3: Sign Up -->
+    <div class="container" id="signup" style="display: none;">
+        <h2>Sign Up</h2>
+        <div class="input-group">
+            <input type="text" placeholder="Full Name" id="signup-name">
+        </div>
+        <div class="input-group">
+            <input type="email" placeholder="Email" id="signup-email">
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="Password" id="signup-password">
+        </div>
+        <button onclick="showPage('menu')">Sign Up</button>
+    </div>
+
+    <!-- Halaman 4: Menu -->
+    <div class="menu" id="menu">
+        <h2>Brewing Coffee</h2>
+        <div class="card-container">
+            <div class="card" onclick="showDetail('Americano', 'Americano brewing coffee from Kenya & Ethiopia.', '$15', 'imagesatu.jpg')">
+                <img src="imagesatu.jpg" alt="Americano">
+                <h3>Americano</h3>
+                <p>Coffee from Kenya, Ethiopia</p>
+                <p class="price">$15</p>
+            </div>
+            <div class="card" onclick="showDetail('Kopi Creamy', 'Kopi Creamy brewing from Sumatra.', '$20', 'imagedua.jpg')">
+                <img src="imagedua.jpg" alt="Kopi Creamy">
+                <h3>Kopi Creamy</h3>
+                <p>Coffee from Sumatra</p>
+                <p class="price">$20</p>
+            </div>
+            <div class="card" onclick="showDetail('Es Kopi Susu', 'Es Kopi Susu brewing coffee from Kenya & Ethiopia.', '$25', 'imagetiga.jpg')">
+                <img src="imagetiga.jpg" alt="Es Kopi Susu">
+                <h3>Es Kopi Susu</h3>
+                <p>Coffee from Kenya, Ethiopia</p>
+                <p class="price">$25</p>
+            </div>
+            <div class="card" onclick="showDetail('Es Kopi', 'Es Kopi brewing coffee from Kenya & Ethiopia.', '$10', 'imageempat.jpg')">
+                <img src="imageempat.jpg" alt="Es Kopi">
+                <h3>Es Kopi</h3>
+                <p>Coffee from Kenya, Ethiopia</p>
+                <p class="price">$10</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman 5: Detail Produk -->
+    <div class="product-detail" id="product-detail">
+        <h2 id="product-title"></h2>
+        <img id="product-image" alt="Product Image">
+        <p id="product-description"></p>
+        <p class="price" id="product-price"></p>
+        <button onclick="showPage('menu')">Order Now</button>
+    </div>
+
+    <script>
+        function showPage(page) {
+            // Sembunyikan semua halaman
+            const pages = ['welcome', 'login', 'signup', 'menu', 'product-detail'];
+            pages.forEach(p => document.getElementById(p).style.display = 'none');
+            
+            // Tampilkan halaman yang sesuai
+            document.getElementById(page).style.display = 'block';
+        }
+
+        function showDetail(title, description, price, image) {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('product-detail').style.display = 'block';
+            document.getElementById('product-title').innerText = title;
+            document.getElementById('product-description').innerText = description;
+            document.getElementById('product-price').innerText = price;
+            document.getElementById('product-image').src = image;
+        }
+    </script>
+</body>
+</html>
